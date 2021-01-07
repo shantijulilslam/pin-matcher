@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pin Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="pin-generator half-width">
+                    <input id="displayRandom" class="form-control" type="text" value="">
+                    <button id="genernateBtn" class="generate-btn">Generate Pin</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-section half-width">
+                    <input class="form-control" id="display" type="text" >
+                    <div class="numbers">
+                        <div class="calc-body">
+                            <div class="calc-button-row">
+                              <div class="button" value="7" onclick="calculate(7)">7</div>
+                              <div class="button" onclick="calculate(8)">8</div>
+                              <div class="button" onclick="calculate(9)">9</div>
+                            </div>
+                            <div class="calc-button-row">
+                              <div class="button" onclick="calculate(4)">4</div>
+                              <div class="button" onclick="calculate(5)">5</div>
+                              <div class="button" onclick="calculate(6)">6</div>
+                            </div>
+                            <div class="calc-button-row">
+                              <div class="button" onclick="calculate(1)">1</div>
+                              <div class="button" onclick="calculate(2)">2</div>
+                              <div class="button" onclick="calculate(3)">3</div>
+                            </div>
+                            <div class="calc-button-row">
+                                <div class="button" onclick="display.value=display.value.slice(0,-1)"><</div>
+                                <div class="button" onclick="calculate(0)"> 0</div>
+                                <div class="button" onclick="display.value=null">C</div>
+                            </div>
+                            <div>
+                                <button id="submitBtn" type="submit" class="submit-btn">Submit</button>
+                                <p  class="action-left"> <span id="tryOptionFixed">3 </span> try left </p>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="notMatchDisplay" class="notify-section">
+            <p class="notify">❌ Pin Didn't Match, Please try again</p>
+            
+        </div>
+        <div id="matchDisplay" class="notify-section">
+            <p  class="notify">✅ Pin Matched... Secret door is opening for you</p>
+        </div>
+    </div>
+
+    <script>
+      
+        //random number display in genarate pin 
+        document.getElementById("genernateBtn").addEventListener("click",function name(params) {
+            document.getElementById("displayRandom").value = Math.round(1000 + Math.random() * 9000);
+        })
+
+        //log in area
+        function calculate(x){
+            display.value=display.value+ x;
+        }
+
+        //pin matching check
+        document.getElementById("submitBtn").addEventListener("click",function name(params) {
+            if (displayRandom.value == display.value ) {
+                document.getElementById("matchDisplay").style.display="block";
+                 document.getElementById("notMatchDisplay").style.display="none";
+
+      }
+
+    
+      else if (displayRandom.value != display.value) {
+        document.getElementById("notMatchDisplay").style.display="block";
+        document.getElementById("matchDisplay").style.display="none";
+
+      }
+            })
+
+        //try left fixed
+        
+        document.getElementById("submitBtn").addEventListener("click",function name(params) {
+            const trytHtml= document.getElementById("tryOptionFixed");
+            const countTry = parseInt(trytHtml.innerHTML);
+            const newTry = countTry - 1;
+            trytHtml.innerHTML = newTry ;
+            const totalLeft = newTry;
+
+            document.getElementById("tryOptionFixed").innerHTML = totalLeft;
+            if (totalLeft == 0) {
+                document.getElementById("submitBtn").style.display = "none";
+            }
+        })
+        
+
+       
+    </script>
+    
+</body>
+</html>
