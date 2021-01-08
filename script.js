@@ -20,14 +20,8 @@ document.getElementById("submitBtn").addEventListener("click",function name(para
 else if (displayRandom.value != display.value) {
 document.getElementById("notMatchDisplay").style.display="block";
 document.getElementById("matchDisplay").style.display="none";
-
-}
-    })
-
 //try left fixed
-
-document.getElementById("submitBtn").addEventListener("click",function name(params) {
-    const trytHtml= document.getElementById("tryOptionFixed");
+const trytHtml= document.getElementById("tryOptionFixed");
     const countTry = parseInt(trytHtml.innerHTML);
     const newTry = countTry - 1;
     trytHtml.innerHTML = newTry ;
@@ -37,4 +31,7 @@ document.getElementById("submitBtn").addEventListener("click",function name(para
     if (totalLeft == 0) {
         document.getElementById("submitBtn").style.display = "none";
     }
-})
+
+}
+    })
+
